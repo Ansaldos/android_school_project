@@ -1,0 +1,60 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionBarItemBackground">@drawable/selectable_background_wouldyougreen</item>
+        <item name="popupMenuStyle">@style/PopupMenu.Hotelgreen</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Hotelgreen</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Hotelgreen</item>
+        <item name="actionDropDownStyle">@style/DropDownNav.Hotelgreen</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Hotelgreen</item>
+        <item name="actionModeBackground">@drawable/cab_background_top_wouldyougreen</item>
+        <item name="actionModeSplitBackground">@drawable/cab_background_bottom_wouldyougreen</item>
+        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Hotelgreen</item>
+    </style>
+
+    <style name="ActionBar.Solid.Hotelgreen" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="background">@drawable/ab_solid_wouldyougreen</item>
+        <item name="backgroundStacked">@drawable/ab_stacked_solid_wouldyougreen</item>
+        <item name="backgroundSplit">@drawable/ab_bottom_solid_wouldyougreen</item>
+        <item name="progressBarStyle">@style/ProgressBar.Hotelgreen</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Hotelgreen" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="background">@drawable/ab_transparent_wouldyougreen</item>
+        <item name="progressBarStyle">@style/ProgressBar.Hotelgreen</item>
+    </style>
+
+    <style name="PopupMenu.Hotelgreen" parent="@style/Widget.AppCompat.Light.PopupMenu">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_wouldyougreen</item>
+    </style>
+
+    <style name="DropDownListView.Hotelgreen" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_wouldyougreen</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Hotelgreen" parent="@style/Widget.AppCompat.Light.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_wouldyougreen</item>
+    </style>
+
+    <style name="DropDownNav.Hotelgreen" parent="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar">
+        <item name="android:background">@drawable/spinner_background_ab_wouldyougreen</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_wouldyougreen</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_wouldyougreen</item>
+    </style>
+
+    <style name="ProgressBar.Hotelgreen" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_wouldyougreen</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Hotelgreen" parent="@style/Widget.AppCompat.Light.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_wouldyougreen</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Hotelgreen.Widget" parent="@style/Theme.AppCompat">
+        <item name="popupMenuStyle">@style/PopupMenu.Hotelgreen</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Hotelgreen</item>
+    </style>
+
+</resources>
