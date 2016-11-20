@@ -1,14 +1,18 @@
 package com.example.legye.wouldyourather.fragment;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.legye.wouldyourather.R;
+import com.example.legye.wouldyourather.dataaccess.HttpRequestProvider;
+import com.example.legye.wouldyourather.dataaccess.IVolleyCallback;
+
+import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +63,19 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        HttpRequestProvider questionsProvider = new HttpRequestProvider(this.getContext());
+        questionsProvider.runGetRequest(new IVolleyCallback() {
+            @Override
+            public void onCompleted(JSONObject result) {
+                if(result == null) {
+                    Log.d("ERROR", "Error during http request");
+                } else {
+                    Log.d("Response", result.toString());
+                }
+
+            }
+        }, "background_user/1?key=K7G7?)cMeX4)jBD");
     }
 
     @Override

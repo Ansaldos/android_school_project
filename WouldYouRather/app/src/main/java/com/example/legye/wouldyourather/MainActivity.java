@@ -65,7 +65,6 @@ public class MainActivity extends
         mNavDrawerItems[0] = new NavDrawerItem("Home", R.drawable.ic_home_white_48dp);
         mNavDrawerItems[1] = new NavDrawerItem("Statistics", R.drawable.ic_home_white_48dp); // TODO icon
         mNavDrawerItems[2] = new NavDrawerItem("Admin", R.drawable.ic_verified_user_white_48dp);
-        // TODO add more items, such as admin element
     }
 
     // Setting up drawer button, and subscribe to open and close event
@@ -140,8 +139,6 @@ public class MainActivity extends
         }
 
         if (fragment != null) {
-            /*FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();*/
             navigateTo(fragment, false);
 
             mDrawerList.setItemChecked(position, true);
@@ -191,8 +188,6 @@ public class MainActivity extends
 
                 break;
         }*/
-
-
     }
 
     // Back button pressed event handler
