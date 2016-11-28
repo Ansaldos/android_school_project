@@ -6,4 +6,19 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="home_fragment_welcome">Are you ready for a funny and refreshing quiz game?</string>
+    <string name="game_fragment_next">Next question</string>
+    <string name="game_fragment_play_again">Are you ready for your next quiz?</string>
+
+    <string name="dialog_title">Login</string>
+    <string name="dialog_enter_password">Enter password below</string>
+    <string name="dialog_wrong_password">Wrong password</string>
+    <string name="dialog_positive_button">Enter</string>
+    <string name="dialog_negative_button">Cancel</string>
+
+    <string name="admin_fragment_enter_question">Enter question below</string>
+    <string name="admin_fragment_enter_answer1">Enter answer 1 below</string>
+    <string name="admin_fragment_enter_answer2">Enter answer 2 below</string>
+    <string name="admin_fragment_empty_input">Field cannot be empty</string>
 </resources>

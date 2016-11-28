@@ -11,4 +11,6 @@
     <color name="drawer_list_item_title">#FFFFFF</color>
     <color name="drawer_counter_text_background">#FFCB30</color>
     <color name="drawer_counter_text_color">#FFFFFF</color>
+
+    <color name="errorColor">#f00</color>
 </resources>

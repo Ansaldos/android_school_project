@@ -1,13 +1,33 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.legye.wouldyourather.fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="26dp"
+        android:text="@string/home_fragment_welcome"
+        android:layout_marginTop="36dp"
+        android:id="@+id/tvWelcomeMsg"/>
 
-</FrameLayout>
+    <Button
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:textAlignment="center"
+        android:text="Yes"
+        android:textSize="40dp"
+        android:background="@drawable/roundedbutton"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="100dp"
+        android:id="@+id/btStart"
+        />
+
+
+
+</LinearLayout>

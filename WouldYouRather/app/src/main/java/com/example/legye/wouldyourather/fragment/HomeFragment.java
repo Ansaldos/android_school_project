@@ -1,88 +1,114 @@
 package com.example.legye.wouldyourather.fragment;
 
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.legye.wouldyourather.R;
-import com.example.legye.wouldyourather.dataaccess.HttpRequestProvider;
-import com.example.legye.wouldyourather.dataaccess.IVolleyCallback;
+import com.example.legye.wouldyourather.dataaccess.JSONParser;
+import com.example.legye.wouldyourather.dataaccess.entity.Info;
+import com.example.legye.wouldyourather.dataaccess.entity.Test;
+import com.example.legye.wouldyourather.dataaccess.entity.TestsResult;
+import com.google.gson.Gson;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link HomeFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class HomeFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.util.List;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class HomeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+
+
+    private List<Test> mTestList; // TODO REMOVE ME
+
+
+    private Button mStart;
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
+    public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-        HttpRequestProvider questionsProvider = new HttpRequestProvider(this.getContext());
-        questionsProvider.runGetRequest(new IVolleyCallback() {
-            @Override
-            public void onCompleted(JSONObject result) {
-                if(result == null) {
-                    Log.d("ERROR", "Error during http request");
-                } else {
-                    Log.d("Response", result.toString());
-                }
-
-            }
-        }, "background_user/1?key=K7G7?)cMeX4)jBD");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        mStart = (Button) view.findViewById(R.id.btStart);
+        mStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.content_frame, new GameFragment(), "Game Fragment Tag");
+                ft.commit();
+            }
+        });
+
+        /*mTestGetButton = (Button)view.findViewById(R.id.btTestGet);
+        mTestGetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    JSONParse jsonParse = new JSONParse();
+                    jsonParse.execute("http://192.168.1.102:80/www/Wouldyou_API/api/tests?key=WP0ueO3XMsNVhjsN").get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        mTestPostPutButton = (Button)view.findViewById(R.id.btTestPostPut);
+        mTestPostPutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    JSONParsePostPut jsonParse = new JSONParsePostPut(JSONParser.PUT, null);
+                    jsonParse.execute("http://192.168.1.102:80/www/Wouldyou_API/api/test?key=WP0ueO3XMsNVhjsN").get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        mTestDeleteButton = (Button)view.findViewById(R.id.btTestDelete);
+        mTestDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    JSONParseDelete jsonParse = new JSONParseDelete();
+                    jsonParse.execute("http://192.168.1.102:80/www/Wouldyou_API/api/test/2?key=WP0ueO3XMsNVhjsN").get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        });*/
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -92,35 +118,123 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    /*@Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }*/
-
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    /*
+    private class JSONParse extends AsyncTask<String, String, JSONObject> {
+
+        private final String LOG_TAG = this.getClass().toString();
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mTestList = null;
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... args) {
+            JSONParser jParser = new JSONParser();
+
+            // Getting JSON from URL
+            JSONObject json = jParser.getRequest(args[0], JSONParser.GET);
+
+            // Getting JSON Array
+            Gson gson = new Gson();
+            List<Test> testList = (gson.fromJson(json.toString(), TestsResult.class)).getData();
+            mTestList = testList;
+
+            return json;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject json) {
+
+            Log.d(LOG_TAG, "Size: " + mTestList.size());
+
+        }
+    }
+
+    private class JSONParseDelete extends AsyncTask<String, String, JSONObject> {
+
+        private final String LOG_TAG = this.getClass().toString();
+        private String mInfo;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mTestList = null;
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... args) {
+            JSONParser jParser = new JSONParser();
+
+            // Getting JSON from URL
+            JSONObject json = jParser.deleteRequest(args[0], JSONParser.DELETE);
+
+            // Getting JSON Array
+            Gson gson = new Gson();
+            mInfo = (gson.fromJson(json.toString(), Info.class)).getInfo();
+            return json;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject json) {
+            Log.d(LOG_TAG, "Delete result: " + mInfo);
+        }
+    }
+
+    private class JSONParsePostPut extends AsyncTask<String, String, JSONObject> {
+
+        private final String LOG_TAG = this.getClass().toString();
+        private String mInfo;
+        private JSONObject mRequestBody;
+        private String mHttpMethod;
+
+        public JSONParsePostPut(String httpMethod, String requestBody) {
+            if(requestBody != null)
+            {
+                try {
+                    mRequestBody = new JSONObject(requestBody);
+                } catch (JSONException e) {
+                    mRequestBody = null;
+                }
+            }
+
+            mHttpMethod = httpMethod;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mTestList = null;
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... args) {
+            JSONParser jParser = new JSONParser();
+
+            // Getting JSON from URL
+            JSONObject json = jParser.postOrPutRequest(args[0], mHttpMethod, mRequestBody);
+
+            // Getting JSON Array
+            Gson gson = new Gson();
+            mInfo = (gson.fromJson(json.toString(), Info.class)).getInfo();
+            return json;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject json) {
+            Log.d(LOG_TAG, "Post or put result: " + mInfo);
+        }
+    }*/
 }

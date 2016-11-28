@@ -1,0 +1,71 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.legye.wouldyourather.fragment.GameFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="26dp"
+        android:text=""
+        android:layout_marginTop="36dp"
+        android:id="@+id/tvQuestion"
+        android:visibility="gone"/>
+    
+    <ProgressBar
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:id="@+id/pbLoading"
+        android:visibility="gone"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1,1"
+        android:layout_marginTop="70dp">
+
+        <TableRow>
+            <Button
+                android:id="@+id/btAnswer1"
+                android:background="@drawable/ab_transparent_wouldyougreen"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text=""
+                android:layout_margin="4dp"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btAnswer2"
+                android:background="@drawable/ab_transparent_wouldyougreen"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text=""
+                android:layout_margin="4dp"
+                android:visibility="gone"/>
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:textAlignment="center"
+        android:text="Yes"
+        android:textSize="40dp"
+        android:background="@drawable/roundedbutton"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="100dp"
+        android:id="@+id/btNextQuiz"
+        android:visibility="gone"
+        />
+
+</LinearLayout>
